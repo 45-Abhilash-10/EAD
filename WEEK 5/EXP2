@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+
+<h2>Calculator</h2>
+
+<input type="number" id="num1" placeholder="Enter Number 1">
+<input type="number" id="num2" placeholder="Enter Number 2">
+
+<br><br>
+
+<button onclick="performOperation('add')">+</button>
+<button onclick="performOperation('sub')">-</button>
+<button onclick="performOperation('mul')">*</button>
+<button onclick="performOperation('div')">/</button>
+
+<h3 id="result"></h3>
+
+<script>
+
+function calculate(num1, num2, operationCallback) {
+    return operationCallback(num1, num2);
+}
+
+const add = (a,b) => a+b;
+const subtract = (a,b) => a-b;
+const multiply = (a,b) => a*b;
+
+const divide = (a,b) => {
+    if(b==0)
+        return "Cannot divide by zero";
+    return a/b;
+}
+
+function performOperation(type){
+
+    let n1 = parseFloat(document.getElementById("num1").value);
+    let n2 = parseFloat(document.getElementById("num2").value);
+
+    let result;
+
+    switch(type){
+
+        case 'add':
+            result = calculate(n1,n2,add);
+            break;
+
+        case 'sub':
+            result = calculate(n1,n2,subtract);
+            break;
+
+        case 'mul':
+            result = calculate(n1,n2,multiply);
+            break;
+
+        case 'div':
+            result = calculate(n1,n2,divide);
+            break;
+    }
+
+    document.getElementById("result").innerHTML = "Result = " + result;
+}
+
+</script>
+
+</body>
+</html>

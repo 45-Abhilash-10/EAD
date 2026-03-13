@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Number Analyzer</title>
+</head>
+<body>
+
+<h2>Number Analyzer</h2>
+
+<input type="number" id="number" placeholder="Enter Number">
+
+<button onclick="analyze()">Analyze</button>
+
+<div id="output"></div>
+
+<script>
+
+function isPalindrome(num){
+    let original = num.toString();
+    let reverse = original.split('').reverse().join('');
+
+    return original === reverse;
+}
+
+function isArmstrong(num){
+
+    let sum = 0;
+    let temp = num;
+    let digits = num.toString().length;
+
+    while(temp > 0){
+        let rem = temp % 10;
+        sum += rem ** digits;
+        temp = parseInt(temp/10);
+    }
+
+    return sum == num;
+}
+
+function isPrime(num){
+
+    if(num < 2)
+        return false;
+
+    for(let i=2; i<num; i++){
+        if(num % i == 0)
+            return false;
+    }
+
+    return true;
+}
+
+function factorial(num){
+
+    let fact = 1;
+
+    for(let i=1; i<=num; i++){
+        fact *= i;
+    }
+
+    return fact;
+}
+
+function analyze(){
+
+    let num = parseInt(document.getElementById("number").value);
+
+    let result = `
+        Palindrome : ${isPalindrome(num)} <br>
+        Armstrong : ${isArmstrong(num)} <br>
+        Prime : ${isPrime(num)} <br>
+        Factorial : ${factorial(num)}
+    `;
+
+    document.getElementById("output").innerHTML = result;
+}
+
+</script>
+
+</body>
+</html>
